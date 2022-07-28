@@ -18,7 +18,7 @@ private class CallListQueryActionTest {
         
         List<CallListMember__c> clms = new List<CallListMember__c>();
         clms.add(new CallListMember__c(CallList__c = testCallList.Id, Lead__c = lead1.Id, Status__c = 'Not Called', Order__c = 1));
-        clms.add(new CallListMember__c(CallList__c = testCallList.Id, Lead__c = lead1.Id, Status__c = 'Not Called', Order__c = 12));
+        clms.add(new CallListMember__c(CallList__c = testCallList.Id, Lead__c = lead2.Id, Status__c = 'Not Called', Order__c = 12));
         insert clms;
         
         Test.startTest();

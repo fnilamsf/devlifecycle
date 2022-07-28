@@ -29,6 +29,7 @@
     <types>
         <members>CallListRecordPage</members>
         <members>CallListMemberRecordPage</members>
+        <members>Call_List_UtilityBar</members>
         <name>FlexiPage</name>
     </types>
     <types>
