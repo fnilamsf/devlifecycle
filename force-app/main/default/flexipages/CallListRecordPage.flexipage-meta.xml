@@ -7,6 +7,16 @@
                     <name>actionNames</name>
                     <valueList>
                         <valueListItems>
+                            <value>CallList__c.NextCall</value>
+                            <visibilityRule>
+                                <criteria>
+                                    <leftValue>{!Record.LeadsNotCalled__c}</leftValue>
+                                    <operator>GT</operator>
+                                    <rightValue>0</rightValue>
+                                </criteria>
+                            </visibilityRule>
+                        </valueListItems>
+                        <valueListItems>
                             <value>Edit</value>
                         </valueListItems>
                         <valueListItems>

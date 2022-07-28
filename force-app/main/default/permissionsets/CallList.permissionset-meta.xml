@@ -4,6 +4,10 @@
         <application>CallList</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>CallListQueryAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Enable Call List app and related custom objects</description>
     <fieldPermissions>
         <editable>true</editable>

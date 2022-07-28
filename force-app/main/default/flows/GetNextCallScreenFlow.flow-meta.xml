@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <actionCalls>
+        <name>Get_Next_Call_List_Order</name>
+        <label>Get Next Call List Order</label>
+        <locationX>314</locationX>
+        <locationY>638</locationY>
+        <actionName>CallListQueryAction</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Set_Order_to_the_next_number</targetReference>
+        </connector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>ids</name>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>55.0</apiVersion>
+    <assignments>
+        <description>Set the Order to the next Order number in the Call List to put this Lead at the back of the list</description>
+        <name>Set_Order_to_the_next_number</name>
+        <label>Set Order to the next number</label>
+        <locationX>314</locationX>
+        <locationY>758</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Next_Lead.Order__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Next_Call_List_Order</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Call_List_Member_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Status_to_Called</name>
+        <label>Set Status to Called</label>
+        <locationX>50</locationX>
+        <locationY>638</locationY>
+        <assignmentItems>
+            <assignToReference>Get_Next_Lead.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Called</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Call_List_Member_Record</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check if the call was successful. i.e. set to Called</description>
+        <name>Called</name>
+        <label>Called?</label>
+        <locationX>182</locationX>
+        <locationY>518</locationY>
+        <defaultConnector>
+            <targetReference>Get_Next_Call_List_Order</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Called</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Successful_Call</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Called</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Status_to_Called</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check if there is next Lead in the Call List</description>
+        <name>Next_Lead_Exist</name>
+        <label>Next Lead Exist?</label>
+        <locationX>380</locationX>
+        <locationY>278</locationY>
+        <defaultConnector>
+            <targetReference>No_more_Leads_to_call</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_NextLeadExist</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Next_Lead.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Next_Call</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Get the next Lead in the Call List Member that is not called yet based on Order number</description>
+    <dynamicChoiceSets>
+        <name>CallListMemberStatusPicklist</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Status__c</picklistField>
+        <picklistObject>CallListMember__c</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <interviewLabel>Get Next Call Screen Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Get Next Call Screen Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get the next Lead in the Call List Member that is not yet called based on the lowest Order number</description>
+        <name>Get_Next_Lead</name>
+        <label>Get Next Lead</label>
+        <locationX>380</locationX>
+        <locationY>158</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Next_Lead_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CallList__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Not Called</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CallListMember__c</object>
+        <sortField>Order__c</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Call_List_Member_Record</name>
+        <label>Update Call List Member Record</label>
+        <locationX>182</locationX>
+        <locationY>974</locationY>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Get_Next_Lead</targetReference>
+        </connector>
+        <inputReference>Get_Next_Lead</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Next_Call</name>
+        <label>Next Call</label>
+        <locationX>182</locationX>
+        <locationY>398</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Called</targetReference>
+        </connector>
+        <fields>
+            <name>NextLeadCallDetail</name>
+            <fieldText>&lt;p&gt;Please call the following Lead:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Name: {!Get_Next_Lead.Lead__r.Salutation} {!Get_Next_Lead.Lead__r.FirstName} {!Get_Next_Lead.Lead__r.LastName}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Phone: {!Get_Next_Lead.Phone__c}&lt;/p&gt;&lt;p&gt;Mobile: {!Get_Next_Lead.Mobile__c}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>Successful_Call</name>
+            <choiceReferences>CallListMemberStatusPicklist</choiceReferences>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>Called</stringValue>
+            </defaultValue>
+            <fieldText>Successful Call?</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <helpText>&lt;p&gt;Set this to &quot;Not Called&quot; if the call was not successful to put this lead further down the Call List&lt;/p&gt;</helpText>
+            <isRequired>false</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>No_more_Leads_to_call</name>
+        <label>No more Leads to call</label>
+        <locationX>578</locationX>
+        <locationY>398</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>NoMoreLeadsText</name>
+            <fieldText>&lt;p&gt;There are no more Leads to Call in the Call List.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Next_Lead</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>CallList__c</objectType>
+    </variables>
+</Flow>
