@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <!--<types>
-        <members>*</members>
+    <types>
+        <members>CallListQueryAction</members>
+        <members>CallListQueryActionTest</members>
         <name>ApexClass</name>
-    </types>-->
+    </types>
+    <types>
+        <members>GetNextCallScreenFlow</members>
+        <name>Flow</name>
+    </types>
     <types>
         <members>CallList__c</members>
         <members>CallListMember__c</members>
@@ -30,6 +35,10 @@
         <members>CallList__c-Call List Layout</members>
         <members>CallListMember__c-Call List Member Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>CallList__c.NextCall</members>
+        <name>QuickAction</name>
     </types>
     <version>55.0</version>
 </Package>
