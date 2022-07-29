@@ -15,6 +15,7 @@ private class CallListQueryActionTest {
         // create test Call List Member
         Lead lead1 = [SELECT Id FROM Lead WHERE FirstName = 'test1'];
         Lead lead2 = [SELECT Id FROM Lead WHERE FirstName = 'test2'];
+        Lead lead3 = [SELECT Id FROM Lead WHERE FirstName = 'test1'];
         
         List<CallListMember__c> clms = new List<CallListMember__c>();
         clms.add(new CallListMember__c(CallList__c = testCallList.Id, Lead__c = lead1.Id, Status__c = 'Not Called', Order__c = 1));
