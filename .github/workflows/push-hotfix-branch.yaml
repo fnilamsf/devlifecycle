@@ -4,7 +4,7 @@ name: Deploy hotfix branch to Staging and Production orgs
 # Definition when the workflow should run
 on:
     push:
-      branches: [ hotifx/* ]
+      branches: [ hotifx_* ]
       paths:
         - 'force-app/**'
             

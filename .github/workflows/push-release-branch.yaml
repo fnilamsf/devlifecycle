@@ -4,7 +4,7 @@ name: Deploy release branch to SIT orgs
 # Definition when the workflow should run
 on:
     push:
-      branches: [ release/* ]
+      branches: [ release_* ]
       paths:
         - 'force-app/**'
             
