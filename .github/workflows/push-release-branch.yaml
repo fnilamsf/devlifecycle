@@ -107,10 +107,10 @@ jobs:
               fetch-depth: 0
 
           - name: 'Get merged Pull Request details'
-              uses: actions-ecosystem/action-get-merged-pull-request@v1
-              id: get-merged-pull-request
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
+            uses: actions-ecosystem/action-get-merged-pull-request@v1
+            id: get-merged-pull-request
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
 
           - name: 'Read PR Body'
             env:
@@ -176,10 +176,10 @@ jobs:
               fetch-depth: 0
 
           - name: 'Get merged Pull Request details'
-              uses: actions-ecosystem/action-get-merged-pull-request@v1
-              id: get-merged-pull-request
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
+            uses: actions-ecosystem/action-get-merged-pull-request@v1
+            id: get-merged-pull-request
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
 
           - name: 'Read PR Body'
             env:
