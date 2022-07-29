@@ -4,7 +4,7 @@ name: Deploy release branch to SIT orgs
 # Definition when the workflow should run
 on:
     push:
-      branches: [ develop ]
+      branches: [ release ]
       paths:
         - 'force-app/**'
             
@@ -37,9 +37,15 @@ jobs:
               with:
                 fetch-depth: 0
 
+            - name: 'Get merged Pull Request details'
+              uses: actions-ecosystem/action-get-merged-pull-request@v1
+              id: get-merged-pull-request
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+
             - name: 'Read PR Body'
               env:
-                PR_BODY: ${{github.event.pull_request.body}}
+                PR_BODY: ${{steps.get-merged-pull-request.outputs.body}}
               run: |
                   echo $PR_BODY > ./pr_body.txt
                   node ./parsePR.js              
@@ -100,9 +106,15 @@ jobs:
             with:
               fetch-depth: 0
 
+          - name: 'Get merged Pull Request details'
+              uses: actions-ecosystem/action-get-merged-pull-request@v1
+              id: get-merged-pull-request
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+
           - name: 'Read PR Body'
             env:
-              PR_BODY: ${{github.event.pull_request.body}}
+              PR_BODY: ${{steps.get-merged-pull-request.outputs.body}}
             run: |
                 echo $PR_BODY > ./pr_body.txt
                 node ./parsePR.js              
@@ -163,9 +175,15 @@ jobs:
             with:
               fetch-depth: 0
 
+          - name: 'Get merged Pull Request details'
+              uses: actions-ecosystem/action-get-merged-pull-request@v1
+              id: get-merged-pull-request
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+
           - name: 'Read PR Body'
             env:
-              PR_BODY: ${{github.event.pull_request.body}}
+              PR_BODY: ${{steps.get-merged-pull-request.outputs.body}}
             run: |
                 echo $PR_BODY > ./pr_body.txt
                 node ./parsePR.js              
