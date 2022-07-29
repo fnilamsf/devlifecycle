@@ -195,6 +195,11 @@
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
+            <name>SuccessfullCallInstructions</name>
+            <fieldText>&lt;p&gt;&lt;span style=&quot;color: rgb(253, 87, 87);&quot;&gt;Please select Successful Call to &quot;Not Called&quot; to push the Lead to the end of the Call List&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
             <name>Successful_Call</name>
             <choiceReferences>CallListMemberStatusPicklist</choiceReferences>
             <dataType>String</dataType>
