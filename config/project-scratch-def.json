@@ -1,13 +1,4 @@
 {
-  "orgName": "fnilam company",
-  "edition": "Developer",
-  "features": ["EnableSetPasswordInApi"],
-  "settings": {
-    "lightningExperienceSettings": {
-      "enableS1DesktopEnabled": true
-    },
-    "mobileSettings": {
-      "enableS1EncryptedStoragePref2": false
-    }
-  }
+  "orgName": "Salesforce Bedrock Demo",
+  "sourceOrg": "00D5i000008BJx0EAG"
 }
