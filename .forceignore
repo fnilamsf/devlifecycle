@@ -10,3 +10,9 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+# Profile
+**/profiles/**
+
+# Utility
+**/flexipages/*_UtilityBar.flexipage-meta.xml
