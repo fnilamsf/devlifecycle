@@ -191,7 +191,7 @@
         </connector>
         <fields>
             <name>NextLeadCallDetail</name>
-            <fieldText>&lt;p&gt;Please call the following Lead:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Name: {!Get_Next_Lead.Lead__r.Salutation} {!Get_Next_Lead.Lead__r.FirstName} {!Get_Next_Lead.Lead__r.LastName}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Phone: {!Get_Next_Lead.Phone__c}&lt;/p&gt;&lt;p&gt;Mobile: {!Get_Next_Lead.Mobile__c}&lt;/p&gt;&lt;p&gt;Order: {!Get_Next_Lead.Order__c}&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;Please call the following Lead:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Name: {!Get_Next_Lead.Lead__r.Salutation} {!Get_Next_Lead.Lead__r.FirstName} {!Get_Next_Lead.Lead__r.LastName}&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Phone: {!Get_Next_Lead.Phone__c}&lt;/p&gt;&lt;p&gt;Mobile: {!Get_Next_Lead.Mobile__c}&lt;/p&gt;&lt;p&gt;Order: Number {!Get_Next_Lead.Order__c}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
