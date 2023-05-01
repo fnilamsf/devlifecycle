@@ -6,6 +6,8 @@ public without sharing class CallListQueryAction {
         for(AggregateResult ar : groupedResults){
             orderNumbers.add(Integer.valueOf(ar.get('expr0')) + 1);
         }
+	
+	// return the order numbers
         return orderNumbers;
     }
 }
