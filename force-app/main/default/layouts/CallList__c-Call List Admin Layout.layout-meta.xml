@@ -97,7 +97,7 @@
         <fields>Lead__c</fields>
         <relatedList>CallListMember__c.CallList__c</relatedList>
         <sortField>Order__c</sortField>
-        <sortOrder>Asc</sortOrder>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
