@@ -11,12 +11,12 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Name</field>
+                <field>Order__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Order__c</field>
-            </layoutItems>
+                <field>Name</field>
+            </layoutItems>          
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
