@@ -43,12 +43,12 @@
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone__c</field>
+                <behavior>Readonly</behavior>
+                <field>Mobile__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Mobile__c</field>
+                <behavior>Readonly</behavior>
+                <field>Phone__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
