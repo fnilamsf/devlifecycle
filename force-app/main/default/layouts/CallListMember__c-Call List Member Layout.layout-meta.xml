@@ -40,14 +40,14 @@
                 <behavior>Edit</behavior>
                 <field>Lead__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>Phone__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>Mobile__c</field>
             </layoutItems>
         </layoutColumns>
